@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ryan Donohue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg:        #141414;
+      --bg-surface: #1C1C1C;
+      --text:      #EDEDED;
+      --text-mute: #7A7A7A;
+      --green:     #3D9970;
+      --green-lt:  #2D6A4F;
+      --rule:      #2A2A2A;
+    }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Layout shell ── */
+    .site-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      width: 100%;
+    }
+
+    /* ── Header / Nav ── */
+    header {
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .wordmark {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 200;
+      letter-spacing: 0.08em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-size: 0.8125rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    nav a.resume-link {
+      color: var(--green);
+      border: 1px solid var(--green);
+      padding: 0.35rem 0.85rem;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a.resume-link:hover {
+      background: var(--green);
+      color: #141414;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 7rem 0 5rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(3.25rem, 9vw, 5.75rem);
+      font-weight: 100;
+      line-height: 1.05;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+
+    /* The signature underline — only on "Donohue" */
+    .hero-name .surname {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero-name .surname::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      background: var(--green);
+      transform-origin: left;
+      animation: underline-draw 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+    }
+
+    @keyframes underline-draw {
+      from { transform: scaleX(0); opacity: 0; }
+      to   { transform: scaleX(1); opacity: 1; }
+    }
+
+    .hero-descriptor {
+      font-size: 1.0625rem;
+      font-weight: 300;
+      color: var(--text-mute);
+      line-height: 1.65;
+      max-width: 480px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      color: #141414;
+      background: var(--green);
+      text-decoration: none;
+      padding: 0.85rem 1.75rem;
+      border-radius: 3px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .hero-cta:hover {
+      background: #4db382;
+      transform: translateY(-1px);
+    }
+
+    .hero-cta svg {
+      opacity: 0.75;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    /* ── About strip ── */
+    .about {
+      padding: 4rem 0;
+    }
+
+    .about-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-lt);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-text {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--text-mute);
+      max-width: 560px;
+    }
+
+    /* ── Expertise pills ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--text-mute);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      padding: 0.3rem 0.7rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--rule);
+      padding: 2rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-mute);
+      letter-spacing: 0.02em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--text-mute);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--green);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .hero {
+        padding: 4rem 0 3.5rem;
+      }
+
+      nav a:not(.resume-link) {
+        display: none;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-name .surname::after {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="site-wrap">
+      <div class="header-inner">
+        <a class="wordmark" href="/">RD</a>
+        <nav>
+          <a href="https://dj.rdonohue.com">DJ</a>
+          <a class="resume-link" href="/resume" target="_blank" rel="noopener">Resume ↗</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main>
+    <div class="site-wrap">
+      <section class="hero">
+        <p class="hero-eyebrow">Messaging Engineer &nbsp;·&nbsp; Systems Analyst</p>
+        <h1 class="hero-name">
+          Ryan<br>
+          <span class="surname">Donohue</span>
+        </h1>
+        <p class="hero-descriptor">
+          Currently at M&amp;T Bank (via TekSystems) managing Microsoft Exchange
+          infrastructure at enterprise scale. Seven years building and leading
+          IT operations across Windows, Linux, Azure, and cloud environments —
+          from the service desk to the server room.
+        </p>
+        <a class="hero-cta" href="/resume" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 12L12 2M12 2H5.5M12 2V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          View Resume
+        </a>
+      </section>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- About -->
+    <div class="site-wrap">
+      <section class="about">
+        <p class="about-label">Background</p>
+        <p class="about-text">
+          Based in Buffalo, NY. Messaging Engineer and Systems Analyst contracted
+          to M&amp;T Bank through TekSystems since 2024, focusing on Microsoft Exchange
+          infrastructure at enterprise scale. Previously Senior Systems Administrator
+          and Team Lead at Personal Computers Inc., where I managed Windows, Linux,
+          Azure, and Hyper-V environments for government, medical, and enterprise clients.
+          B.S. in Computer Information Systems, SUNY Buffalo State — graduated with high honors.
+          I also run <a href="https://dj.rdonohue.com" style="color: var(--green); text-decoration: none;">Eclipse Entertainment</a>,
+          a DJ and event production company.
+        </p>
+        <div class="tags">
+          <span class="tag">Microsoft Exchange</span>
+          <span class="tag">Windows Server</span>
+          <span class="tag">Active Directory</span>
+          <span class="tag">Microsoft Azure</span>
+          <span class="tag">Office 365</span>
+          <span class="tag">Hyper-V</span>
+          <span class="tag">PowerShell</span>
+          <span class="tag">Linux</span>
+          <span class="tag">Systems Administration</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="site-wrap">
+      <div class="footer-inner">
+        <span class="footer-copy">© 2026 Ryan Donohue · Buffalo, NY</span>
+        <div class="footer-links">
+          <a href="https://dj.rdonohue.com">DJ Site</a>
+          <a href="mailto:DonohueRD@gmail.com">Contact</a>
+          <a href="/resume" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
