@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ryan Donohue</title>
+  <title>Ryan Donohue · Messaging Engineer &amp; Systems Analyst</title>
+  <meta name="description" content="Ryan Donohue is a Messaging Engineer and Systems Analyst in Buffalo, NY, focused on Microsoft Exchange infrastructure at enterprise scale." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@100;200;300&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -19,9 +20,8 @@
       --bg:        #141414;
       --bg-surface: #1C1C1C;
       --text:      #EDEDED;
-      --text-mute: #7A7A7A;
+      --text-mute: #8F8F8F;
       --green:     #3D9970;
-      --green-lt:  #2D6A4F;
       --rule:      #2A2A2A;
     }
 
@@ -38,6 +38,17 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+    }
+
+    ::selection {
+      background: var(--green);
+      color: var(--bg);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+      border-radius: 2px;
     }
 
     /* ── Layout shell ── */
@@ -77,6 +88,9 @@
     }
 
     nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
       font-size: 0.8125rem;
       font-weight: 400;
       letter-spacing: 0.04em;
@@ -100,7 +114,7 @@
 
     nav a.resume-link:hover {
       background: var(--green);
-      color: #141414;
+      color: var(--bg);
     }
 
     /* ── Hero ── */
@@ -163,10 +177,11 @@
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
+      min-height: 44px;
       font-size: 0.875rem;
       font-weight: 500;
       letter-spacing: 0.01em;
-      color: #141414;
+      color: var(--bg);
       background: var(--green);
       text-decoration: none;
       padding: 0.85rem 1.75rem;
@@ -200,7 +215,7 @@
       font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--green-lt);
+      color: var(--green);
       margin-bottom: 1.25rem;
     }
 
@@ -212,12 +227,19 @@
       max-width: 560px;
     }
 
-    /* ── Expertise pills ── */
+    .text-link {
+      color: var(--green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ── Expertise tags ── */
     .tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-top: 2rem;
+      list-style: none;
     }
 
     .tag {
@@ -257,6 +279,9 @@
     }
 
     .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
       font-size: 0.75rem;
       color: var(--text-mute);
       text-decoration: none;
@@ -273,10 +298,6 @@
         padding: 4rem 0 3.5rem;
       }
 
-      nav a:not(.resume-link) {
-        display: none;
-      }
-
       .footer-inner {
         flex-direction: column;
         align-items: flex-start;
@@ -288,6 +309,12 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-name .surname::after {
         animation: none;
+      }
+
+      .hero-cta,
+      .hero-cta:hover {
+        transform: none;
+        transition: none;
       }
     }
   </style>
@@ -301,7 +328,7 @@
         <a class="wordmark" href="/">RD</a>
         <nav>
           <a href="https://dj.rdonohue.com">DJ</a>
-          <a class="resume-link" href="/resume" target="_blank" rel="noopener">Resume ↗</a>
+          <a class="resume-link" href="/resume.pdf" target="_blank" rel="noopener">Resume ↗</a>
         </nav>
       </div>
     </div>
@@ -318,11 +345,11 @@
         </h1>
         <p class="hero-descriptor">
           Systems Analyst at M&amp;T Bank (via TekSystems) managing Microsoft Exchange
-          infrastructure at enterprise scale. Seven years building and leading
+          infrastructure at enterprise scale. Seven years of building and leading
           IT operations across Windows, Linux, Azure, and cloud environments —
           from the service desk to the server room.
         </p>
-        <a class="hero-cta" href="/resume" target="_blank" rel="noopener">
+        <a class="hero-cta" href="/resume.pdf" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M2 12L12 2M12 2H5.5M12 2V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -336,28 +363,28 @@
     <!-- About -->
     <div class="site-wrap">
       <section class="about">
-        <p class="about-label">Background</p>
+        <h2 class="about-label">Background</h2>
         <p class="about-text">
           Based in Buffalo, NY. Messaging Engineer and Systems Analyst contracted
           to M&amp;T Bank through TekSystems since 2024, focusing on Microsoft Exchange
-          infrastructure at enterprise scale. Previously worked as a Senior Systems Administrator
-          and Team Lead at Personal Computers Inc., where I managed Windows, Linux,
+          infrastructure at enterprise scale. Previously Senior Systems Administrator
+          and Team Lead at Personal Computers Inc., managing Windows, Linux,
           Azure, and Hyper-V environments for government, medical, and enterprise clients.
-          B.S. in Computer Information Systems, SUNY Buffalo State — graduated with high honors.
-          I also run <a href="https://dj.rdonohue.com" style="color: var(--green); text-decoration: none;">Eclipse Entertainment</a>,
+          B.S. in Computer Information Systems, SUNY Buffalo State, graduated with high honors.
+          Also runs <a class="text-link" href="https://dj.rdonohue.com">Eclipse Entertainment</a>,
           a DJ and event production company.
         </p>
-        <div class="tags">
-          <span class="tag">Microsoft Exchange</span>
-          <span class="tag">Windows Server</span>
-          <span class="tag">Active Directory</span>
-          <span class="tag">Microsoft Azure</span>
-          <span class="tag">Office 365</span>
-          <span class="tag">Hyper-V</span>
-          <span class="tag">PowerShell</span>
-          <span class="tag">Linux</span>
-          <span class="tag">Systems Administration</span>
-        </div>
+        <ul class="tags">
+          <li class="tag">Microsoft Exchange</li>
+          <li class="tag">Windows Server</li>
+          <li class="tag">Active Directory</li>
+          <li class="tag">Microsoft Azure</li>
+          <li class="tag">Office 365</li>
+          <li class="tag">Hyper-V</li>
+          <li class="tag">PowerShell</li>
+          <li class="tag">Linux</li>
+          <li class="tag">Systems Administration</li>
+        </ul>
       </section>
     </div>
   </main>
@@ -366,15 +393,19 @@
   <footer>
     <div class="site-wrap">
       <div class="footer-inner">
-        <span class="footer-copy">© 2026 Ryan Donohue · Buffalo, NY</span>
+        <span class="footer-copy">© <span id="year">2026</span> Ryan Donohue · Buffalo, NY</span>
         <div class="footer-links">
           <a href="https://dj.rdonohue.com">DJ Site</a>
-          <a href="mailto:DonohueRD@gmail.com">Contact</a>
-          <a href="/resume" target="_blank" rel="noopener">Resume</a>
+          <a href="mailto:DonohueRD@gmail.com">DonohueRD@gmail.com</a>
+          <a href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
         </div>
       </div>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
 </body>
 </html>
